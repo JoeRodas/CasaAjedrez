@@ -24,6 +24,11 @@ The following list outlines the major tasks planned for the project:
 ## Repository Status
 
 The repository now contains a basic Swift package with initial chess logic,
-a placeholder AI opponent and sample tests. Additional features will be added
+an expanded board setup, and sample tests. Additional features will be added
 incrementally.
+
+## License
+
+This project is released under the MIT License. See [LICENSE](LICENSE) for
+details.
 
