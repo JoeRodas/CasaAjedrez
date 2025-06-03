@@ -9,6 +9,14 @@ Casa Ajedrez is an open-source iOS chess app built with Swift and SwiftUI. It fe
 - SwiftUI interface with animations and touch interaction
 - Move history with undo/redo
 
+<!-- <<<<<<< 721jq9-codex/develop-native-chess-app-with-ai -->
+- Full chess rules and piece movement, including castling and pawn promotion
+<!-- ======= -->
+- Full chess rules and piece movement
+<!-- >>>>>>> main -->
+- Minimax-based AI opponent
+- SwiftUI interface with animations
+
 ## Project Tasks
 
 The following list outlines the major tasks planned for the project:
@@ -27,6 +35,16 @@ The following list outlines the major tasks planned for the project:
 The repository now provides a working chess engine with check detection,
 castling and pawn promotion, plus a Minimax AI. A GitHub Actions workflow
 runs the test suite on each pull request.
+<!-- <<<<<<< 721jq9-codex/develop-native-chess-app-with-ai -->
+The repository now provides a working chess engine with check detection,
+castling and pawn promotion, plus a Minimax AI. A GitHub Actions workflow
+runs the test suite on each pull request.
+<!-- ======= -->
+The repository now contains a basic Swift package with initial chess logic,
+<!-- <<<<<<< 64xolk-codex/develop-native-chess-app-with-ai -->
+an expanded board setup, and sample tests. Additional features will be added
+incrementally. A GitHub Actions workflow runs the test suite on each pull request.
+<!-- >>>>>>> main -->
 
 ## Building
 
@@ -35,6 +53,8 @@ Ensure you have Swift 6.1 or later installed. To build the package:
 ```bash
 swift build
 ```
+<!-- <<<<<<< 721jq9-codex/develop-native-chess-app-with-ai -->
+
 
 ### Running Tests
 
@@ -46,8 +66,22 @@ swift test
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for details on contributing to this project.
 
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details on contributing to this project.
+
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details on contributing to this project.
+an expanded board setup, and sample tests. Additional features will be added
+incrementally.
+
+
 ## License
 
 This project is released under the MIT License. See [LICENSE](LICENSE) for
 details.
+
+
+a placeholder AI opponent and sample tests. Additional features will be added
+incrementally.
+
 
