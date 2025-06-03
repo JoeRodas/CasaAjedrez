@@ -28,6 +28,10 @@ public struct Board {
         setupInitialPosition()
     }
 
+// <<<<<<< 721jq9-codex/develop-native-chess-app-with-ai
+// =======
+// <<<<<<< 64xolk-codex/develop-native-chess-app-with-ai
+// >>>>>>> main
     public init(empty: Bool) {
         squares = Array(repeating: Array(repeating: nil, count: 8), count: 8)
         if !empty {
@@ -35,12 +39,21 @@ public struct Board {
         }
     }
 
+// <<<<<<< 721jq9-codex/develop-native-chess-app-with-ai
+// =======
+// =======
+// >>>>>>> main
+// >>>>>>> main
     mutating func setupInitialPosition() {
         // Place pawns
         for file in 0..<8 {
             squares[1][file] = Piece(.pawn, .white)
             squares[6][file] = Piece(.pawn, .black)
         }
+// <<<<<<< 64xolk-codex/develop-native-chess-app-with-ai
+// =======
+// makkxq-codex/develop-native-chess-app-with-ai
+// >>>>>>> main
         // Place major pieces
         let backRank: [PieceType] = [.rook, .knight, .bishop, .queen,
                                      .king, .bishop, .knight, .rook]
@@ -116,6 +129,7 @@ public struct Board {
         case .king:
             return max(abs(to.0 - from.0), abs(to.1 - from.1)) == 1
         }
+
     }
 
     func kingPosition(for color: PieceColor) -> (Int, Int)? {
@@ -168,6 +182,13 @@ public struct Board {
             }
         }
         return moves
+
+        // Simple placement for rooks as an example
+        squares[0][0] = Piece(.rook, .white)
+        squares[0][7] = Piece(.rook, .white)
+        squares[7][0] = Piece(.rook, .black)
+        squares[7][7] = Piece(.rook, .black)
+
     }
 
     public subscript(rank: Int, file: Int) -> Piece? {
