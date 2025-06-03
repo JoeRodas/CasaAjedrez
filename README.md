@@ -24,15 +24,42 @@ The following list outlines the major tasks planned for the project:
 ## Repository Status
 
 The repository now contains a basic Swift package with initial chess logic,
-makkxq-codex/develop-native-chess-app-with-ai
+<!-- <<<<<<< 64xolk-codex/develop-native-chess-app-with-ai -->
+an expanded board setup, and sample tests. Additional features will be added
+incrementally. A GitHub Actions workflow runs the test suite on each pull request.
+
+## Building
+
+Ensure you have Swift 6.1 or later installed. To build the package:
+<!-- 
+```bash
+swift build
+``` -->
+
+### Running Tests
+
+Execute the test suite with:
+<!-- 
+```bash
+swift test
+``` -->
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details on contributing to this project.
+<!-- =======
+makkxq-codex/develop-native-chess-app-with-ai -->
 an expanded board setup, and sample tests. Additional features will be added
 incrementally.
+<!-- >>>>>>> main -->
 
 ## License
 
 This project is released under the MIT License. See [LICENSE](LICENSE) for
 details.
 
+<!-- <<<<<<< 64xolk-codex/develop-native-chess-app-with-ai -->
+<!-- ======= -->
 a placeholder AI opponent and sample tests. Additional features will be added
 incrementally.
 
+<!-- >>>>>>> main
+ -->

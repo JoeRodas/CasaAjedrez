@@ -28,13 +28,26 @@ public struct Board {
         setupInitialPosition()
     }
 
+// <<<<<<< 64xolk-codex/develop-native-chess-app-with-ai
+    public init(empty: Bool) {
+        squares = Array(repeating: Array(repeating: nil, count: 8), count: 8)
+        if !empty {
+            setupInitialPosition()
+        }
+    }
+
+// =======
+// >>>>>>> main
     mutating func setupInitialPosition() {
         // Place pawns
         for file in 0..<8 {
             squares[1][file] = Piece(.pawn, .white)
             squares[6][file] = Piece(.pawn, .black)
         }
+// <<<<<<< 64xolk-codex/develop-native-chess-app-with-ai
+// =======
 // makkxq-codex/develop-native-chess-app-with-ai
+// >>>>>>> main
         // Place major pieces
         let backRank: [PieceType] = [.rook, .knight, .bishop, .queen,
                                      .king, .bishop, .knight, .rook]
@@ -110,6 +123,60 @@ public struct Board {
         case .king:
             return max(abs(to.0 - from.0), abs(to.1 - from.1)) == 1
         }
+// <<<<<<< 64xolk-codex/develop-native-chess-app-with-ai
+    }
+
+    func kingPosition(for color: PieceColor) -> (Int, Int)? {
+        for r in 0..<8 {
+            for f in 0..<8 {
+                if let p = squares[r][f], p.type == .king && p.color == color {
+                    return (r, f)
+                }
+            }
+        }
+        return nil
+    }
+
+    func isSquareAttacked(_ square: (Int, Int), by color: PieceColor) -> Bool {
+        for r in 0..<8 {
+            for f in 0..<8 {
+                if let piece = squares[r][f], piece.color == color {
+                    if isValidMove(for: piece, from: (r, f), to: square) {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+
+    func isKingInCheck(_ color: PieceColor) -> Bool {
+        guard let kingPos = kingPosition(for: color) else { return false }
+        let opponent: PieceColor = color == .white ? .black : .white
+        return isSquareAttacked(kingPos, by: opponent)
+    }
+
+    func generateMoves(for color: PieceColor) -> [((Int, Int), (Int, Int))] {
+        var moves: [((Int, Int), (Int, Int))] = []
+        for r in 0..<8 {
+            for f in 0..<8 {
+                guard let piece = squares[r][f], piece.color == color else { continue }
+                for r2 in 0..<8 {
+                    for f2 in 0..<8 {
+                        if isValidMove(for: piece, from: (r, f), to: (r2, f2)) {
+                            var copy = self
+                            copy[r2, f2] = piece
+                            copy[r, f] = nil
+                            if !copy.isKingInCheck(color) {
+                                moves.append(((r, f), (r2, f2)))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return moves
+// =======
 //=======
         // Simple placement for rooks as an example
         squares[0][0] = Piece(.rook, .white)
@@ -117,6 +184,7 @@ public struct Board {
         squares[7][0] = Piece(.rook, .black)
         squares[7][7] = Piece(.rook, .black)
 //>>>>>>> main
+// >>>>>>> main
     }
 
     public subscript(rank: Int, file: Int) -> Piece? {
