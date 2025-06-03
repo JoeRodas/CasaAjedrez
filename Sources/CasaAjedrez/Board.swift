@@ -34,6 +34,7 @@ public struct Board {
             squares[1][file] = Piece(.pawn, .white)
             squares[6][file] = Piece(.pawn, .black)
         }
+// makkxq-codex/develop-native-chess-app-with-ai
         // Place major pieces
         let backRank: [PieceType] = [.rook, .knight, .bishop, .queen,
                                      .king, .bishop, .knight, .rook]
@@ -109,6 +110,13 @@ public struct Board {
         case .king:
             return max(abs(to.0 - from.0), abs(to.1 - from.1)) == 1
         }
+//=======
+        // Simple placement for rooks as an example
+        squares[0][0] = Piece(.rook, .white)
+        squares[0][7] = Piece(.rook, .white)
+        squares[7][0] = Piece(.rook, .black)
+        squares[7][7] = Piece(.rook, .black)
+//>>>>>>> main
     }
 
     public subscript(rank: Int, file: Int) -> Piece? {

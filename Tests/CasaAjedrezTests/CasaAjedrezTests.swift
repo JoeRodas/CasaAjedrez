@@ -8,10 +8,15 @@ import Testing
     #expect(game.board[1, 0]?.color == .white)
     // Black pawn at opposite side
     #expect(game.board[6, 0]?.color == .black)
+//<<<<<<< makkxq-codex/develop-native-chess-app-with-ai
     // Major pieces
     #expect(game.board[0, 0]?.type == .rook)
     #expect(game.board[0, 1]?.type == .knight)
     #expect(game.board[0, 3]?.type == .queen)
+//=======
+    // Rook placement
+    #expect(game.board[0, 0]?.type == .rook)
+//>>>>>>> main
 }
 
 @Test func aiMove() async throws {
@@ -22,6 +27,7 @@ import Testing
     #expect(move?.from.0 == 1)
     #expect(move?.to.0 == 2)
 }
+//<<<<<<< makkxq-codex/develop-native-chess-app-with-ai
 
 @Test func invalidMove() async throws {
     var game = Game()
@@ -56,3 +62,5 @@ import Testing
     let bishop = board[0, 2]!
     #expect(board.isValidMove(for: bishop, from: (0, 2), to: (3, 5)))
 }
+//=======
+//>>>>>>> main

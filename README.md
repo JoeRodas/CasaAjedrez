@@ -24,6 +24,7 @@ The following list outlines the major tasks planned for the project:
 ## Repository Status
 
 The repository now contains a basic Swift package with initial chess logic,
+makkxq-codex/develop-native-chess-app-with-ai
 an expanded board setup, and sample tests. Additional features will be added
 incrementally.
 
@@ -31,4 +32,7 @@ incrementally.
 
 This project is released under the MIT License. See [LICENSE](LICENSE) for
 details.
+
+a placeholder AI opponent and sample tests. Additional features will be added
+incrementally.
 
