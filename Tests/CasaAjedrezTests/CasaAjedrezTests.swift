@@ -8,10 +8,21 @@ import Testing
     #expect(game.board[1, 0]?.color == .white)
     // Black pawn at opposite side
     #expect(game.board[6, 0]?.color == .black)
+// <<<<<<< 64xolk-codex/develop-native-chess-app-with-ai
+// =======
+// //<<<<<<< makkxq-codex/develop-native-chess-app-with-ai
+// >>>>>>> main
     // Major pieces
     #expect(game.board[0, 0]?.type == .rook)
     #expect(game.board[0, 1]?.type == .knight)
     #expect(game.board[0, 3]?.type == .queen)
+// <<<<<<< 64xolk-codex/develop-native-chess-app-with-ai
+// =======
+//=======
+    // Rook placement
+    #expect(game.board[0, 0]?.type == .rook)
+//>>>>>>> main
+// >>>>>>> main
 }
 
 @Test func aiMove() async throws {
@@ -19,11 +30,18 @@ import Testing
     let ai = MinimaxAI()
     let move = ai.chooseMove(from: game.board)
     #expect(move != nil)
+// <<<<<<< 64xolk-codex/develop-native-chess-app-with-ai
     if let m = move {
         let piece = game.board[m.from.0, m.from.1]!
         #expect(game.board.isValidMove(for: piece, from: m.from, to: m.to))
     }
 }
+// =======
+    #expect(move?.from.0 == 1)
+    #expect(move?.to.0 == 2)
+}
+//<<<<<<< makkxq-codex/develop-native-chess-app-with-ai
+// >>>>>>> main
 
 @Test func invalidMove() async throws {
     var game = Game()
@@ -58,6 +76,7 @@ import Testing
     let bishop = board[0, 2]!
     #expect(board.isValidMove(for: bishop, from: (0, 2), to: (3, 5)))
 }
+// <<<<<<< 64xolk-codex/develop-native-chess-app-with-ai
 
 @Test func checkDetection() async throws {
     var board = Board(empty: true)
@@ -77,3 +96,7 @@ import Testing
     let game = Game(board: board)
     #expect(game.isCheckmate(for: .white))
 }
+// =======
+//=======
+//>>>>>>> main
+// >>>>>>> main
