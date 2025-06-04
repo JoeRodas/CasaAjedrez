@@ -43,6 +43,36 @@ Execute the test suite with:
 ```bash
 swift test
 ```
+The test suite depends on the `swift-testing` package. Swift Package Manager
+fetches this dependency from GitHub the first time the tests are run, so
+internet access is required. If you are working offline you can vendor the
+package by cloning `swift-testing` locally and changing the dependency in
+`Package.swift` to use `.package(path: "../swift-testing")`.
+
+## Creating an iOS App Target
+
+1. Open the package in Xcode and choose **File > New > Target...**.
+2. Select the **App** template under iOS.
+3. Add this repository using **File > Add Packages...** and pick the `CasaAjedrez` product.
+4. Import `CasaAjedrez` in your new target.
+
+Example minimal application:
+
+```swift
+import SwiftUI
+import CasaAjedrez
+
+@main
+struct ChessApp: App {
+    @StateObject private var viewModel = GameViewModel(humanColor: .white)
+
+    var body: some Scene {
+        WindowGroup {
+            BoardView(viewModel: viewModel)
+        }
+    }
+}
+```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for details on contributing to this project.
 
