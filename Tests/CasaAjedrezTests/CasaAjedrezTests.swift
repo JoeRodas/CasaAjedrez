@@ -31,6 +31,7 @@ import Testing
     }
 }
 
+
     #expect(move?.from.0 == 1)
     #expect(move?.to.0 == 2)
 }
@@ -113,3 +114,25 @@ import Testing
     #expect(game.board[7,0]?.color == .white)
 }
 
+@Test func enPassantCapture() async throws {
+    var board = Board(empty: true)
+    board[0,4] = Piece(.king, .white)
+    board[7,4] = Piece(.king, .black)
+    board[4,4] = Piece(.pawn, .white)
+    board[6,3] = Piece(.pawn, .black)
+    var game = Game(board: board, currentTurn: .black)
+    try game.applyMove(from: (6,3), to: (4,3))
+    try game.applyMove(from: (4,4), to: (5,3))
+    #expect(game.board[5,3]?.color == .white)
+    #expect(game.board[4,3] == nil)
+}
+
+@Test func undoRedo() async throws {
+    var game = Game()
+    try game.applyMove(from: (1,0), to: (3,0))
+    game.undo()
+    #expect(game.board[1,0]?.type == .pawn)
+    #expect(game.board[3,0] == nil)
+    game.redo()
+    #expect(game.board[3,0]?.type == .pawn)
+}
