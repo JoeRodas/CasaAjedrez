@@ -84,7 +84,6 @@ public struct MinimaxAI {
         let result = minimax(board: board, depth: depth, maximizing: true, color: color, alpha: &alpha, beta: &beta)
         return result.move
 
-
     // Placeholder evaluation that picks the first available move
     public func chooseMove(from board: Board) -> (from: (Int, Int), to: (Int, Int))? {
         for rank in 0..<8 {

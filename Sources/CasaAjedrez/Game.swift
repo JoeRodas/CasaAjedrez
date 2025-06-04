@@ -109,6 +109,7 @@ public struct Game {
 
         updateCastlingRights(piece: piece, from: from, to: to, captured: captured)
 
+
         } else {
             throw GameError.invalidMove
         }
@@ -143,6 +144,7 @@ public struct Game {
 
     public func isStalemate(for color: PieceColor) -> Bool {
         !board.isKingInCheck(color) && board.generateMoves(for: color, enPassant: enPassantSquare).isEmpty
+
         board.isKingInCheck(color) && board.generateMoves(for: color).isEmpty
     }
 
@@ -253,5 +255,4 @@ public struct Game {
         board[to.0, to.1] = piece
         currentTurn = currentTurn == .white ? .black : .white
     }
-
 }

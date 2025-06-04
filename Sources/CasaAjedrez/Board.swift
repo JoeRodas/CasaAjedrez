@@ -78,7 +78,6 @@ public struct Board {
 
     public func isValidMove(for piece: Piece, from: (Int, Int), to: (Int, Int), enPassant: (Int, Int)? = nil) -> Bool {
 
-
     public func isValidMove(for piece: Piece, from: (Int, Int), to: (Int, Int)) -> Bool {
         guard (0..<8).contains(to.0), (0..<8).contains(to.1) else { return false }
         if let dest = self[to.0, to.1], dest.color == piece.color { return false }
@@ -178,6 +177,7 @@ public struct Board {
             }
         }
         return moves
+
 
         // Simple placement for rooks as an example
         squares[0][0] = Piece(.rook, .white)

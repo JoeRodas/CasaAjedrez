@@ -32,7 +32,6 @@ import Testing
 }
 
 
-
     #expect(move?.from.0 == 1)
     #expect(move?.to.0 == 2)
 }
@@ -71,7 +70,6 @@ import Testing
     let bishop = board[0, 2]!
     #expect(board.isValidMove(for: bishop, from: (0, 2), to: (3, 5)))
 }
-
 
 @Test func checkDetection() async throws {
     var board = Board(empty: true)
