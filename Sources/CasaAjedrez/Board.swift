@@ -41,7 +41,7 @@ public struct Board {
             squares[1][file] = Piece(.pawn, .white)
             squares[6][file] = Piece(.pawn, .black)
         }
-      
+
         // Place major pieces
         let backRank: [PieceType] = [.rook, .knight, .bishop, .queen,
                                      .king, .bishop, .knight, .rook]
@@ -77,6 +77,7 @@ public struct Board {
     }
 
     public func isValidMove(for piece: Piece, from: (Int, Int), to: (Int, Int), enPassant: (Int, Int)? = nil) -> Bool {
+
 
     public func isValidMove(for piece: Piece, from: (Int, Int), to: (Int, Int)) -> Bool {
         guard (0..<8).contains(to.0), (0..<8).contains(to.1) else { return false }
@@ -155,6 +156,7 @@ public struct Board {
     }
 
     func generateMoves(for color: PieceColor, enPassant: (Int, Int)? = nil) -> [((Int, Int), (Int, Int))] {
+
     func generateMoves(for color: PieceColor) -> [((Int, Int), (Int, Int))] {
         var moves: [((Int, Int), (Int, Int))] = []
         for r in 0..<8 {

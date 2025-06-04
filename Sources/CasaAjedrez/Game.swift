@@ -76,7 +76,6 @@ public struct Game {
                 movedPiece = Piece(.queen, piece.color)
             }
 
-
         let destinationPiece = board[to.0, to.1]
 
         if board.isValidMove(for: piece, from: from, to: to) {
@@ -144,7 +143,6 @@ public struct Game {
 
     public func isStalemate(for color: PieceColor) -> Bool {
         !board.isKingInCheck(color) && board.generateMoves(for: color, enPassant: enPassantSquare).isEmpty
-
         board.isKingInCheck(color) && board.generateMoves(for: color).isEmpty
     }
 
