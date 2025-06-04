@@ -1,6 +1,7 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+@available(iOS 13.0, *)
 public class GameViewModel: ObservableObject {
     @Published public private(set) var game: Game
     @Published public var selected: (Int, Int)? = nil
@@ -29,6 +30,7 @@ public class GameViewModel: ObservableObject {
     public func redo() { game.redo() }
 }
 
+@available(iOS 13.0, *)
 public struct BoardView: View {
     @ObservedObject var viewModel: GameViewModel
 
@@ -51,6 +53,7 @@ public struct BoardView: View {
 
 private struct SquareView: View {
     let piece: Piece?
+    @available(iOS 13.0.0, *)
     var body: some View {
         Text(symbol(for: piece))
             .font(.system(size: 32))
