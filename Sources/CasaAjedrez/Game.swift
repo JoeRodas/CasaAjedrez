@@ -45,6 +45,7 @@ public struct Game {
         self.currentTurn = currentTurn
         self.castlingRights = CastlingRights()
 
+
     }
 
     public init(board: Board, currentTurn: PieceColor = .white) {
@@ -75,6 +76,7 @@ public struct Game {
             if piece.type == .pawn && (to.0 == 7 || to.0 == 0) {
                 movedPiece = Piece(.queen, piece.color)
             }
+
 
         let destinationPiece = board[to.0, to.1]
 
@@ -248,6 +250,7 @@ public struct Game {
         castlingRights = next.castlingRights
         enPassantSquare = next.enPassantSquare
     }
+
 
     public mutating func applyMove(from: (Int, Int), to: (Int, Int)) {
         let piece = board[from.0, from.1]

@@ -14,6 +14,7 @@ import Testing
     #expect(game.board[0, 1]?.type == .knight)
     #expect(game.board[0, 3]?.type == .queen)
 
+
     // Rook placement
     #expect(game.board[0, 0]?.type == .rook)
 

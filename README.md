@@ -10,6 +10,7 @@ Casa Ajedrez is an open-source iOS chess app built with Swift and SwiftUI. It fe
 - Move history with undo/redo
 
 
+
 - Full chess rules and piece movement, including castling and pawn promotion
 - Full chess rules and piece movement
 - Minimax-based AI opponent
@@ -33,6 +34,7 @@ The following list outlines the major tasks planned for the project:
 The repository now provides a working chess engine with check detection,
 castling and pawn promotion, plus a Minimax AI. A GitHub Actions workflow
 runs the test suite on each pull request.
+
 
 
 The repository now provides a working chess engine with check detection,
@@ -62,6 +64,7 @@ swift test
 See [CONTRIBUTING.md](CONTRIBUTING.md) for details on contributing to this project.
 
 
+
 See [CONTRIBUTING.md](CONTRIBUTING.md) for details on contributing to this project.
 
 
@@ -74,6 +77,7 @@ incrementally.
 
 This project is released under the MIT License. See [LICENSE](LICENSE) for
 details.
+
 
 a placeholder AI opponent and sample tests. Additional features will be added
 incrementally.
