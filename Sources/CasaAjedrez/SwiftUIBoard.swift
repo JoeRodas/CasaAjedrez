@@ -4,24 +4,50 @@ import SwiftUI
 public class GameViewModel: ObservableObject {
     @Published public private(set) var game: Game
     @Published public var selected: (Int, Int)? = nil
+    @Published public var message: String? = nil
 
-    public init(game: Game = Game()) {
+    private let humanColor: PieceColor
+    private let ai = MinimaxAI()
+
+    public init(humanColor: PieceColor, game: Game = Game()) {
+        self.humanColor = humanColor
         self.game = game
+        if humanColor == .black {
+            makeAIMove()
+        }
     }
 
     public func tapSquare(rank: Int, file: Int) {
+        guard game.currentTurn == humanColor else { return }
         if let sel = selected {
             do {
                 try game.applyMove(from: sel, to: (rank, file))
                 withAnimation { self.game = game }
+                selected = nil
+                checkGameState()
+                if game.currentTurn != humanColor {
+                    makeAIMove()
+                }
             } catch {
-                // ignore invalid
+                selected = nil
             }
-            selected = nil
-        } else {
-            if let piece = game.board[rank, file], piece.color == game.currentTurn {
-                selected = (rank, file)
-            }
+        } else if let piece = game.board[rank, file], piece.color == game.currentTurn {
+            selected = (rank, file)
+        }
+    }
+
+    private func makeAIMove() {
+        guard let move = ai.chooseMove(from: game.board, for: game.currentTurn) else { return }
+        do {
+            try game.applyMove(from: move.from, to: move.to)
+            withAnimation { self.game = game }
+            checkGameState()
+        } catch {}
+    }
+
+    private func checkGameState() {
+        if game.isCheckmate(for: game.currentTurn) {
+            message = game.currentTurn == humanColor ? "Checkmate. You lost." : "Checkmate! You won!"
         }
     }
 
@@ -44,6 +70,43 @@ public struct BoardView: View {
                             .onTapGesture { viewModel.tapSquare(rank: rank, file: file) }
                     }
                 }
+            }
+        }
+    }
+}
+
+public struct ChooseColorView: View {
+    @State private var selectedColor: PieceColor? = nil
+
+    public init() {}
+
+    public var body: some View {
+        if let color = selectedColor {
+            GameScreen(humanColor: color)
+        } else {
+            VStack(spacing: 16) {
+                Text("Choose Your Side")
+                    .font(.headline)
+                Button("Play as White") { selectedColor = .white }
+                Button("Play as Black") { selectedColor = .black }
+            }
+            .padding()
+        }
+    }
+}
+
+private struct GameScreen: View {
+    @StateObject var viewModel: GameViewModel
+
+    init(humanColor: PieceColor) {
+        _viewModel = StateObject(wrappedValue: GameViewModel(humanColor: humanColor))
+    }
+
+    var body: some View {
+        VStack {
+            BoardView(viewModel: viewModel)
+            if let msg = viewModel.message {
+                Text(msg).font(.headline).padding(.top)
             }
         }
     }
