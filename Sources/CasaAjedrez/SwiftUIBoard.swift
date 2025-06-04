@@ -1,6 +1,10 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+    public convenience init(game: Game = Game()) {
+        self.init(humanColor: .white, game: game)
+    }
+
 @available(iOS 13.0, *)
 public class GameViewModel: ObservableObject {
     @Published public private(set) var game: Game
