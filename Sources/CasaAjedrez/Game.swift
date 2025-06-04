@@ -1,5 +1,6 @@
 import Foundation
 
+
 public enum GameError: Error {
     case invalidMove
 }
@@ -25,6 +26,13 @@ public struct Game {
     private var enPassantSquare: (Int, Int)? = nil
     private var history: [GameState] = []
     private var redoStack: [GameState] = []
+    public private(set) var board: Board
+    public private(set) var currentTurn: PieceColor
+    private var castlingRights = CastlingRights()
+
+public struct Game {
+    public private(set) var board: Board
+    public private(set) var currentTurn: PieceColor
 
     public init() {
         self.board = Board()
@@ -36,6 +44,12 @@ public struct Game {
         self.board = board
         self.currentTurn = currentTurn
         self.castlingRights = CastlingRights()
+
+    }
+
+    public init(board: Board, currentTurn: PieceColor = .white) {
+        self.board = board
+        self.currentTurn = currentTurn
     }
 
     public mutating func applyMove(from: (Int, Int), to: (Int, Int)) throws {
@@ -62,6 +76,15 @@ public struct Game {
                 movedPiece = Piece(.queen, piece.color)
             }
 
+        let destinationPiece = board[to.0, to.1]
+
+        if board.isValidMove(for: piece, from: from, to: to) {
+            var copy = board
+            copy[from.0, from.1] = nil
+            var movedPiece = piece
+            if piece.type == .pawn && (to.0 == 7 || to.0 == 0) {
+                movedPiece = Piece(.queen, piece.color)
+            }
             copy[to.0, to.1] = movedPiece
 
             if copy.isKingInCheck(currentTurn) {
@@ -85,6 +108,28 @@ public struct Game {
         }
 
         updateCastlingRights(piece: piece, from: from, to: to, captured: captured)
+
+        } else {
+            throw GameError.invalidMove
+        }
+
+        updateCastlingRights(piece: piece, from: from, to: to, captured: destinationPiece)
+
+    public mutating func applyMove(from: (Int, Int), to: (Int, Int)) throws {
+        guard let piece = board[from.0, from.1], piece.color == currentTurn,
+              board.isValidMove(for: piece, from: from, to: to) else {
+            throw GameError.invalidMove
+        }
+
+        var copy = board
+        copy[from.0, from.1] = nil
+        copy[to.0, to.1] = piece
+
+        if copy.isKingInCheck(currentTurn) {
+            throw GameError.invalidMove
+        }
+
+        board = copy
         currentTurn = currentTurn == .white ? .black : .white
     }
 
@@ -98,6 +143,11 @@ public struct Game {
 
     public func isStalemate(for color: PieceColor) -> Bool {
         !board.isKingInCheck(color) && board.generateMoves(for: color, enPassant: enPassantSquare).isEmpty
+        board.isKingInCheck(color) && board.generateMoves(for: color).isEmpty
+    }
+
+    public func isStalemate(for color: PieceColor) -> Bool {
+        !board.isKingInCheck(color) && board.generateMoves(for: color).isEmpty
     }
 
     private func canCastleKingside(color: PieceColor) -> Bool {
@@ -196,4 +246,12 @@ public struct Game {
         castlingRights = next.castlingRights
         enPassantSquare = next.enPassantSquare
     }
+
+    public mutating func applyMove(from: (Int, Int), to: (Int, Int)) {
+        let piece = board[from.0, from.1]
+        board[from.0, from.1] = nil
+        board[to.0, to.1] = piece
+        currentTurn = currentTurn == .white ? .black : .white
+    }
+
 }
