@@ -41,7 +41,6 @@ public struct Board {
             squares[1][file] = Piece(.pawn, .white)
             squares[6][file] = Piece(.pawn, .black)
         }
-
         // Place major pieces
         let backRank: [PieceType] = [.rook, .knight, .bishop, .queen,
                                      .king, .bishop, .knight, .rook]
@@ -122,6 +121,7 @@ public struct Board {
             return max(abs(to.0 - from.0), abs(to.1 - from.1)) == 1
         }
 
+
     }
 
     func kingPosition(for color: PieceColor) -> (Int, Int)? {
@@ -140,6 +140,7 @@ public struct Board {
             for f in 0..<8 {
                 if let piece = squares[r][f], piece.color == color {
                     if isValidMove(for: piece, from: (r, f), to: square, enPassant: nil) {
+
                     if isValidMove(for: piece, from: (r, f), to: square) {
                         return true
                     }
