@@ -1,6 +1,7 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+@available(iOS 13.0, *)
 public class GameViewModel: ObservableObject {
     @Published public private(set) var game: Game
     @Published public var selected: (Int, Int)? = nil
@@ -55,6 +56,7 @@ public class GameViewModel: ObservableObject {
     public func redo() { game.redo() }
 }
 
+@available(iOS 13.0, *)
 public struct BoardView: View {
     @ObservedObject var viewModel: GameViewModel
 
@@ -76,6 +78,8 @@ public struct BoardView: View {
 }
 
 public struct ChooseColorView: View {
+@available(iOS 14.0, *)
+public struct WelcomeView: View {
     @State private var selectedColor: PieceColor? = nil
 
     public init() {}
@@ -87,6 +91,10 @@ public struct ChooseColorView: View {
             VStack(spacing: 16) {
                 Text("Choose Your Side")
                     .font(.headline)
+                Text("Casa Ajedrez")
+                    .font(.largeTitle)
+                Text("Made by Casa Jose")
+                    .font(.caption)
                 Button("Play as White") { selectedColor = .white }
                 Button("Play as Black") { selectedColor = .black }
             }
@@ -95,6 +103,8 @@ public struct ChooseColorView: View {
     }
 }
 
+
+@available(iOS 14.0, *)
 private struct GameScreen: View {
     @StateObject var viewModel: GameViewModel
 
@@ -114,6 +124,7 @@ private struct GameScreen: View {
 
 private struct SquareView: View {
     let piece: Piece?
+    @available(iOS 13.0.0, *)
     var body: some View {
         Text(symbol(for: piece))
             .font(.system(size: 32))
