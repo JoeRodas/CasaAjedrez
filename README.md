@@ -50,4 +50,3 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details on contributing to this proje
 
 This project is released under the MIT License. See [LICENSE](LICENSE) for
 details.
-
