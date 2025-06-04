@@ -139,6 +139,7 @@ public struct Board {
             for f in 0..<8 {
                 if let piece = squares[r][f], piece.color == color {
                     if isValidMove(for: piece, from: (r, f), to: square, enPassant: nil) {
+
                     if isValidMove(for: piece, from: (r, f), to: square) {
                         return true
                     }
@@ -156,6 +157,7 @@ public struct Board {
 
     func generateMoves(for color: PieceColor, enPassant: (Int, Int)? = nil) -> [((Int, Int), (Int, Int))] {
 
+
     func generateMoves(for color: PieceColor) -> [((Int, Int), (Int, Int))] {
         var moves: [((Int, Int), (Int, Int))] = []
         for r in 0..<8 {
@@ -164,7 +166,7 @@ public struct Board {
                 for r2 in 0..<8 {
                     for f2 in 0..<8 {
                         if isValidMove(for: piece, from: (r, f), to: (r2, f2), enPassant: enPassant) {
-                        if isValidMove(for: piece, from: (r, f), to: (r2, f2)) {
+                if isValidMove(for: piece, from: (r, f), to: (r2, f2)) {
                             var copy = self
                             copy[r2, f2] = piece
                             copy[r, f] = nil

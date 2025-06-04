@@ -1,20 +1,17 @@
 name: Swift CI
 
 on:
-  pull_request:
   push:
-    branches: [ main ]
+    branches:
+      - main
+  pull_request:
 
 jobs:
   build:
-    # Pin the runner to a supported Ubuntu version
     runs-on: ubuntu-22.04
-
-    runs-on: ubuntu-22.04
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: swift-actions/setup-swift@v1
         with:
-          swift-version: '6.1'
-      - run: swift test --enable-test-discovery
+          swift-version: "6.1"
+      - run: swift test

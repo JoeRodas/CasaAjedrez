@@ -35,6 +35,7 @@ castling and pawn promotion, plus a Minimax AI. A GitHub Actions workflow
 runs the test suite on each pull request.
 
 
+
 The repository now provides a working chess engine with check detection,
 castling and pawn promotion, plus a Minimax AI. A GitHub Actions workflow
 runs the test suite on each pull request.
@@ -62,6 +63,7 @@ swift test
 See [CONTRIBUTING.md](CONTRIBUTING.md) for details on contributing to this project.
 
 
+
 See [CONTRIBUTING.md](CONTRIBUTING.md) for details on contributing to this project.
 
 
@@ -77,3 +79,4 @@ details.
 
 a placeholder AI opponent and sample tests. Additional features will be added
 incrementally.
+

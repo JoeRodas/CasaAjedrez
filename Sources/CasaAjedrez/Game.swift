@@ -1,6 +1,5 @@
 import Foundation
 
-
 public enum GameError: Error {
     case invalidMove
 }
@@ -26,6 +25,7 @@ public struct Game {
     private var enPassantSquare: (Int, Int)? = nil
     private var history: [GameState] = []
     private var redoStack: [GameState] = []
+
     public private(set) var board: Board
     public private(set) var currentTurn: PieceColor
     private var castlingRights = CastlingRights()
@@ -44,6 +44,7 @@ public struct Game {
         self.board = board
         self.currentTurn = currentTurn
         self.castlingRights = CastlingRights()
+
 
     }
 
@@ -75,6 +76,7 @@ public struct Game {
             if piece.type == .pawn && (to.0 == 7 || to.0 == 0) {
                 movedPiece = Piece(.queen, piece.color)
             }
+
 
         let destinationPiece = board[to.0, to.1]
 
@@ -144,6 +146,7 @@ public struct Game {
 
     public func isStalemate(for color: PieceColor) -> Bool {
         !board.isKingInCheck(color) && board.generateMoves(for: color, enPassant: enPassantSquare).isEmpty
+
 
         board.isKingInCheck(color) && board.generateMoves(for: color).isEmpty
     }
