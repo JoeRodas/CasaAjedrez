@@ -18,6 +18,11 @@ public class GameViewModel: ObservableObject {
         }
     }
 
+    public convenience init(game: Game = Game()) {
+        self.init(humanColor: .white, game: game)
+
+    }
+
     public func tapSquare(rank: Int, file: Int) {
         guard game.currentTurn == humanColor else { return }
         if let sel = selected {
@@ -77,6 +82,7 @@ public struct BoardView: View {
     }
 }
 
+public struct ChooseColorView: View {
 @available(iOS 14.0, *)
 public struct WelcomeView: View {
     @State private var selectedColor: PieceColor? = nil
@@ -88,6 +94,8 @@ public struct WelcomeView: View {
             GameScreen(humanColor: color)
         } else {
             VStack(spacing: 16) {
+                Text("Choose Your Side")
+                    .font(.headline)
                 Text("Casa Ajedrez")
                     .font(.largeTitle)
                 Text("Made by Casa Jose")
@@ -99,6 +107,7 @@ public struct WelcomeView: View {
         }
     }
 }
+
 
 @available(iOS 14.0, *)
 private struct GameScreen: View {

@@ -6,7 +6,8 @@
 
 - Full chess rules and piece movement, including castling, en passant and pawn promotion
 - Minimax-based AI opponent
-- SwiftUI interface with animations and touch interaction
+- SwiftUI interface with a welcome screen, color selection,
+  animations and touch interaction
 - Move history with undo/redo
 
 ## Project Tasks
