@@ -77,6 +77,7 @@ public struct BoardView: View {
     }
 }
 
+@available(iOS 13.0, *)
 public struct WelcomeView: View {
     @State private var selectedColor: PieceColor? = nil
 
@@ -99,6 +100,7 @@ public struct WelcomeView: View {
     }
 }
 
+@available(iOS 13.0, *)
 private struct GameScreen: View {
     @StateObject var viewModel: GameViewModel
 
