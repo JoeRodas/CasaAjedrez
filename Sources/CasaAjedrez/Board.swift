@@ -41,6 +41,7 @@ public struct Board {
             squares[1][file] = Piece(.pawn, .white)
             squares[6][file] = Piece(.pawn, .black)
         }
+
         // Place major pieces
         let backRank: [PieceType] = [.rook, .knight, .bishop, .queen,
                                      .king, .bishop, .knight, .rook]
@@ -76,6 +77,8 @@ public struct Board {
     }
 
     public func isValidMove(for piece: Piece, from: (Int, Int), to: (Int, Int), enPassant: (Int, Int)? = nil) -> Bool {
+
+    public func isValidMove(for piece: Piece, from: (Int, Int), to: (Int, Int)) -> Bool {
         guard (0..<8).contains(to.0), (0..<8).contains(to.1) else { return false }
         if let dest = self[to.0, to.1], dest.color == piece.color { return false }
 
@@ -117,6 +120,7 @@ public struct Board {
         case .king:
             return max(abs(to.0 - from.0), abs(to.1 - from.1)) == 1
         }
+
     }
 
     func kingPosition(for color: PieceColor) -> (Int, Int)? {
@@ -135,6 +139,8 @@ public struct Board {
             for f in 0..<8 {
                 if let piece = squares[r][f], piece.color == color {
                     if isValidMove(for: piece, from: (r, f), to: square, enPassant: nil) {
+
+                    if isValidMove(for: piece, from: (r, f), to: square) {
                         return true
                     }
                 }
@@ -150,6 +156,9 @@ public struct Board {
     }
 
     func generateMoves(for color: PieceColor, enPassant: (Int, Int)? = nil) -> [((Int, Int), (Int, Int))] {
+
+
+    func generateMoves(for color: PieceColor) -> [((Int, Int), (Int, Int))] {
         var moves: [((Int, Int), (Int, Int))] = []
         for r in 0..<8 {
             for f in 0..<8 {
@@ -157,6 +166,7 @@ public struct Board {
                 for r2 in 0..<8 {
                     for f2 in 0..<8 {
                         if isValidMove(for: piece, from: (r, f), to: (r2, f2), enPassant: enPassant) {
+                if isValidMove(for: piece, from: (r, f), to: (r2, f2)) {
                             var copy = self
                             copy[r2, f2] = piece
                             copy[r, f] = nil
@@ -169,6 +179,14 @@ public struct Board {
             }
         }
         return moves
+
+
+        // Simple placement for rooks as an example
+        squares[0][0] = Piece(.rook, .white)
+        squares[0][7] = Piece(.rook, .white)
+        squares[7][0] = Piece(.rook, .black)
+        squares[7][7] = Piece(.rook, .black)
+
     }
 
     public subscript(rank: Int, file: Int) -> Piece? {
