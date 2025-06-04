@@ -30,7 +30,7 @@ runs the test suite on each pull request.
 
 ## Building
 
-Ensure you have Swift 6.0 or later installed. To build the package:
+Ensure you have Swift 5.9 or later installed. To build the package:
 
 ```bash
 swift build
